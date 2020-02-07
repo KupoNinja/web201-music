@@ -6,7 +6,9 @@ class Store {
    */
   state = {
     /** @type {Song[]} */  
-    songs: []
+    songs: [],
+    /** @type {Song[]} */
+    playlist: []
   };
 }
 
