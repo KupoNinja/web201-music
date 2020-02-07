@@ -10,7 +10,7 @@ class SongsService {
     // NOTE this will get your songs on page load
     this.getMySongs();
   }
-
+  
   /**
    * Takes in a search query and retrieves the results that will be put in the store
    * @param {string} query
@@ -19,7 +19,7 @@ class SongsService {
     let url = "https://itunes.apple.com/search?&term=" + query;
     let response = await fetch(url);
     let data = await response.json();
-    store.state.songs = data.results.filter(data => data.kind == "song")
+    store.state.songs = data.results.filter(d => d.kind == "song")
                                     .map(s => new Song(s));
   }
 

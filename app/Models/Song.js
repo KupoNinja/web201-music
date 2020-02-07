@@ -27,8 +27,8 @@ export default class Song {
   }
 
   get playlistTemplate() {
-    return `
-
+    return /* html */ `
+      <div>${this.title}</div>
         `;
   }
 }

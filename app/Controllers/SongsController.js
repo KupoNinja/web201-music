@@ -11,12 +11,19 @@ function _drawResults() {
   document.getElementById("songs").innerHTML = template;
 }
 /**Draws the Users saved songs to the page */
-function _drawPlaylist() {}
+function _drawPlaylist() {
+  let template = "";
+  store.state.playlist.forEach(s => {
+    template += s.playlistTemplate
+  });
+  document.getElementById("playlist").innerHTML = template;
+}
 
 //Public
 export default class SongsController {
   constructor() {
     // TODO load your playlist
+    this.getPlaylist();
   }
 
   /**Takes in the form submission event and sends the query to the service */
@@ -26,6 +33,15 @@ export default class SongsController {
     try {
       await SongService.getMusicByQuery(e.target.query.value);
       _drawResults();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async getPlaylist() {
+    try {
+      await SongService.getMySongs();
+      _drawPlaylist();
     } catch (error) {
       console.error(error);
     }
