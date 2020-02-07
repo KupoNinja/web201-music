@@ -20,14 +20,11 @@ class SongsService {
     let response = await fetch(url);
       let data = await response.json();
       // store.state.songs.push(data);
-      store.state.songs = data.results.map(itunesData => new Song(itunesData));
-      // data.results.foreach(data => {
-      //   if (data.kind == "songs") {
-      //     store.state.songs = data.map(itunesData => new Song(itunesData));
-      //   }
-      // })
-      console.log(store.state.songs)
-    console.log("THE SONG DATA", data.results);
+       data.results.map(itunesData => new Song(itunesData));
+
+      store.state.songs = data.results.filter(data => data.kind == "song")
+                                      .map(s => new Song(s));
+    console.log("THE SONG DATA", data.results.length, store.state.songs.length);
   }
 
   /**
