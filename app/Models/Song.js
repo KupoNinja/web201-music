@@ -10,10 +10,16 @@ export default class Song {
     this._id = data.trackId || data._id;
   }
 
-  get Template() {
-    return `
-
-        `;
+  get resultsTemplate() {
+    return /* html */ `
+      <div class="card" style="width: 18rem;">
+        <img src="${this.albumArt}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${this.title}</h5>
+          <p>Add to PlayList <i class="btn btn-success fa fa-plus-square" onclick="app.songController.addSong()" aria-hidden="true"></i></p>
+        </div>
+      </div>
+    `;
   }
 
   get playlistTemplate() {

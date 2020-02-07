@@ -3,7 +3,7 @@ import store from "../store.js";
 
 // @ts-ignore
 //TODO Change YOURNAME to your actual name
-let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/YOURNAME/songs";
+let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/jj/songs";
 
 class SongsService {
   constructor() {
@@ -15,11 +15,18 @@ class SongsService {
    * Takes in a search query and retrieves the results that will be put in the store
    * @param {string} query
    */
-  async getMusicByQuery(query) {
-    // NOTE You will not need to change this method
+    async getMusicByQuery(query) {
     let url = "https://itunes.apple.com/search?&term=" + query;
     let response = await fetch(url);
-    let data = await response.json();
+      let data = await response.json();
+      // store.state.songs.push(data);
+      store.state.songs = data.results.map(itunesData => new Song(itunesData));
+      // data.results.foreach(data => {
+      //   if (data.kind == "songs") {
+      //     store.state.songs = data.map(itunesData => new Song(itunesData));
+      //   }
+      // })
+      console.log(store.state.songs)
     console.log("THE SONG DATA", data.results);
   }
 

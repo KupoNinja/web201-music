@@ -3,7 +3,13 @@ import SongService from "../Services/SongsService.js";
 
 //Private
 /**Draws the Search results to the page */
-function _drawResults() {}
+function _drawResults() {
+  let template = "";
+  store.state.songs.forEach(s => {
+    template += s.resultsTemplate
+  }); 
+  document.getElementById("songs").innerHTML = template;
+}
 /**Draws the Users saved songs to the page */
 function _drawPlaylist() {}
 
