@@ -1,5 +1,6 @@
 import store from "../store.js";
 import SongService from "../Services/SongsService.js";
+import Song from "../Models/Song.js";
 
 //Private
 /**Draws the Search results to the page */
@@ -32,6 +33,7 @@ export default class SongsController {
     e.preventDefault();
     try {
       await SongService.getMusicByQuery(e.target.query.value);
+      console.log(store.state.songs)
       _drawResults();
     } catch (error) {
       console.error(error);
@@ -51,7 +53,14 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  async addSong(id) {}
+  async addSong(id) {
+    try {
+      await SongService.addSong(id);
+      _drawPlaylist();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server

@@ -20,7 +20,7 @@ export default class Song {
           <h5 class="card-title">${this.title}</h5>
           <p>$${this.price}</p>
           <audio src="${this.preview}" controls></audio>
-          <p>Add to PlayList <i class="btn btn-success fa fa-plus-square" onclick="app.songController.addSong()" aria-hidden="true"></i></p>
+          <p>Add to PlayList <i class="btn btn-success fa fa-plus-square" onclick="app.songsController.addSong(${this._id})" aria-hidden="true"></i></p>
         </div>
       </div>
     `;

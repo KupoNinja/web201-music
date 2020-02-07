@@ -3,14 +3,14 @@ import store from "../store.js";
 
 // @ts-ignore
 //TODO Change YOURNAME to your actual name
-let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/jj/songs";
+let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/jj/songs/";
 
 class SongsService {
   constructor() {
     // NOTE this will get your songs on page load
     this.getMySongs();
   }
-  
+
   /**
    * Takes in a search query and retrieves the results that will be put in the store
    * @param {string} query
@@ -37,9 +37,20 @@ class SongsService {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  addSong(id) {
+  async addSong(id) {
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
+    let selectedSong = store.state.songs.find(s => s._id == id);
+    let response = await fetch(_sandBoxUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(selectedSong)
+    });
+    let data = await response.json();
+    let savedSong = new Song(data.data);
+    store.state.playlist.push(savedSong);
   }
 
   /**
