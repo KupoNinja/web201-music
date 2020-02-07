@@ -29,7 +29,7 @@ class SongsService {
   async getMySongs() {
     let response = await fetch(_sandBoxUrl);
     let data = await response.json();
-    console.log("MY SONGS", data.data);
+    store.state.playlist = data.data.map(s => new Song(s));
   }
 
   /**
