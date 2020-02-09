@@ -58,8 +58,17 @@ class SongsService {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  removeSong(id) {
+  async removeSong(id) {
     //TODO Send the id to be deleted from the server then update the store
+    debugger;
+    let songToDelete = store.state.playlist.find(s => s._id == id);
+    let response = await fetch(_sandBoxUrl + songToDelete._id, {
+      method: "DELETE"
+    });
+    let i = store.state.playlist.findIndex(s => s._id == songToDelete._id);
+    if (i != -1) {
+      store.state.playlist.splice(i, 1);
+    }
   }
 }
 

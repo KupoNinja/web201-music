@@ -33,7 +33,6 @@ export default class SongsController {
     e.preventDefault();
     try {
       await SongService.getMusicByQuery(e.target.query.value);
-      console.log(store.state.songs)
       _drawResults();
     } catch (error) {
       console.error(error);
@@ -43,6 +42,7 @@ export default class SongsController {
   async getPlaylist() {
     try {
       await SongService.getMySongs();
+      console.log(store.state.playlist);
       _drawPlaylist();
     } catch (error) {
       console.error(error);
@@ -67,5 +67,12 @@ export default class SongsController {
    * Takes in a song id to be removed from the users playlist and sends it to the server
    * @param {string} id
    */
-  async removeSong(id) {}
+  async removeSong(id) {
+    try {
+      await SongService.removeSong(id);
+      _drawPlaylist();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }
