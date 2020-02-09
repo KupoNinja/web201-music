@@ -49,6 +49,8 @@ export default class SongsController {
     }
   }
 
+  // NOTE Set Active Song here
+
   /**
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
@@ -62,7 +64,6 @@ export default class SongsController {
     }
   }
 
-  // NOTE Only thing I have to do left. Need to figure out a dynamic button...
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server
    * @param {string} id

@@ -1,5 +1,9 @@
 export default class Song {
   constructor(data) {
+    if (!data) {
+      return;
+    }
+
     this.title = data.trackName || data.title;
     this.albumArt =
       data.albumArt || data.artworkUrl100.replace(/100x100/g, "300x300");
@@ -37,5 +41,13 @@ export default class Song {
         </div>
       </div>
     `;
+  }
+
+  get activeSongTemplate() {
+    return /* html */ `
+      <div>
+        <audio src="${this.preview}" controls></audio>
+      </div>
+    `
   }
 }
