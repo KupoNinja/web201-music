@@ -42,7 +42,6 @@ export default class SongsController {
   async getPlaylist() {
     try {
       await SongService.getMySongs();
-      console.log(store.state.playlist);
       _drawPlaylist();
     } catch (error) {
       console.error(error);
